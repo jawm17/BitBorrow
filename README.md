@@ -1,8 +1,25 @@
-# React + Vite
+# BitBorrow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+BitBorrow is a decentralized application (dApp) built on the Rootstock network, allowing users to request and fund microloans using Bitcoin. The project leverages Ethereum-compatible smart contracts to manage loan requests and funding, ensuring transparency and trust in loan transactions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Request Loans**: Users can request loans by specifying the amount and duration.
+- **Fund Loans**: Users can fund existing loan requests.
+- **Loan Management**: Loan details such as amount, due date, and duration are managed by smart contracts.
+- **User Authentication**: Users can connect their Ethereum-compatible wallet to interact with the application.
+
+## Prerequisites
+
+- Node.js (v14 or later)
+- npm (v6 or later)
+- MetaMask or another Ethereum-compatible wallet
+
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/bitborrow.git
+   cd bitborrow
