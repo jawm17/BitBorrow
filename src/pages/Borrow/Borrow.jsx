@@ -58,7 +58,7 @@ export default function Borrow() {
 
     async function requestLoan() {
         if(loanAmount && interest && duration) {
-            const tx = await contract.requestLoan(ethers.parseUnits(loanAmount, 'ether'), interest, duration);
+            const tx = await contract.requestLoan(ethers.parseUnits(loanAmount, 'ether'), ethers.parseUnits(interest, 'ether'), duration);
             tx.wait();
             setTimeout(() => {
                 fetchLoans();

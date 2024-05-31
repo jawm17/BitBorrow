@@ -17,7 +17,7 @@ export default function FundedLoan(props) {
     return (
         <div className="loanReqBody">
             <p>Loan Amount: {ethers.formatUnits(props.loanData.amount, 'ether')} rBTC</p>
-            <p>Interest: {props.loanData.interest.toString()} rBTC</p>
+            <p>Interest: {ethers.formatUnits(props.loanData.interest, 'ether')} rBTC</p>
             <p>Borrower: {props.loanData.borrower}</p>
             <p>Funded: {"true"}</p>
 
