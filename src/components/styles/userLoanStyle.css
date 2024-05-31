@@ -1,0 +1,13 @@
+
+
+.userLBody {
+    width: 95%;
+    max-width: 900px;
+    border-radius: 6px;
+    height: 150px;
+    padding: 10px;
+    background-color: var(--grayMain);
+    border: solid 1px var(--graySecond);
+    margin: auto;
+    margin-bottom: 20px;
+}

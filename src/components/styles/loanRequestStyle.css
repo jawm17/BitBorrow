@@ -1,0 +1,25 @@
+.loanReqBody {
+    width: 95%;
+    max-width: 900px;
+    border-radius: 6px;
+    /* height: 150px; */
+    padding: 20px;
+    background-color: var(--grayMain);
+    border: solid 1px var(--graySecond);
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.fundLoanBtn {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary);
+    color: black;
+    border: solid 1px var(--grayThird);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
