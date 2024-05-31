@@ -26,7 +26,7 @@ export default function UserLoan(props) {
                         Loan Repaid
                     </div>
                     :
-                    fundedBy ?
+                    props.loanData.lender !== "0x0000000000000000000000000000000000000000" ?
                         <div className="fundLoanBtn" onClick={() => props.repayLoan(props.index)}>
                             Repay Loan
                         </div>

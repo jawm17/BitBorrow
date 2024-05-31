@@ -53,7 +53,7 @@ export default function Borrow() {
             loans.push(loan);
         }
         console.log(loans);
-        setLoanRequests(loans);
+        setLoanRequests(loans.reverse());
     }
 
     async function requestLoan() {
@@ -92,13 +92,13 @@ export default function Borrow() {
                         Borrow rBTC
                     </div>
                     <div className="borrowInputOuter">
-                        <input className="borrowInput" placeholder="amount rBTC" onChange={(e) => setLoanAmount(e.target.value)} value={loanAmount}></input>
+                        <input className="borrowInput" placeholder="amount (rBTC)" onChange={(e) => setLoanAmount(e.target.value)} value={loanAmount}></input>
                     </div>
                     <div className="borrowInputOuter">
-                        <input className="borrowInput" placeholder="interest" onChange={(e) => setInterest(e.target.value)} value={interest}></input>
+                        <input className="borrowInput" placeholder="interest (rBTC)" onChange={(e) => setInterest(e.target.value)} value={interest}></input>
                     </div>
                     <div className="borrowInputOuter">
-                        <input className="borrowInput" placeholder="duration" onChange={(e) => setDuration(e.target.value)} value={duration}></input>
+                        <input className="borrowInput" placeholder="duration (seconds)" onChange={(e) => setDuration(e.target.value)} value={duration}></input>
                     </div>
                     <div id="requestLoanBtn" onClick={() => requestLoan()}>
                         Request Loan
