@@ -66,6 +66,17 @@ nav {
   z-index: -1;
 }
 
+.homeGrid {
+  position: absolute;
+  height: 100%;
+  weight: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  z-index: 0;
+}
+
 .grid-svg {
   height: 80%;
   width: 80%;
@@ -83,7 +94,7 @@ nav {
   position: absolute;
 }
 
-.title {
+.homeTitle {
   font-size: 10rem;
   font-weight: 700;
   letter-spacing: -0.8rem;
@@ -93,25 +104,25 @@ nav {
   justify-content: center;
   align-self: center;
   height: 100%;
-  z-index: 1000;
+  z-index: 1;
 }
 
-.title > p {
+.homeTitle > p {
   margin: 0;
   line-height: 10rem;
   width: auto;
 }
 
-.title > p:nth-child(1){
+.homeTitle > p:nth-child(1){
   align-self: flex-start;
 }
 
-.title > p:nth-child(2){
+.homeTitle > p:nth-child(2){
   color: var(--primary);
   align-self: flex-end;
 }
 
-.title > p:nth-child(3){
+.homeTitle > p:nth-child(3){
   align-self: flex-end;
 }
 
