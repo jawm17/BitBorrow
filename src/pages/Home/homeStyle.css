@@ -189,6 +189,7 @@ span {
 .button.first {
   top: 12%;
   right: 20%;
+  z-index: 500000;
 }
 
 .button.sec {

@@ -3,3 +3,29 @@
 #loanRequestArea {
     margin-top: 40px;
 }
+
+#loanTabArea {
+    width: 95%;
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.loanTab {
+    background-color: var(--grayMain);
+    color: gray;
+    border: solid 1px transparent;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+#selectedLoanTab {
+    color: white;
+    border: solid 1px white;
+}

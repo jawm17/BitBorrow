@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
 import "./styles/loanRequestStyle.css";
 
-export default function LoanRequest(props) {
+export default function FundedLoan(props) {
     const [fundedBy, setFundedBy] = useState("");
 
     useEffect(() => {
-        if(props.loanData.lender === "0x0000000000000000000000000000000000000000") {
+        if (props.loanData.lender === "0x0000000000000000000000000000000000000000") {
             setFundedBy("");
         } else {
             setFundedBy(props.loanData.lender);
@@ -19,11 +19,18 @@ export default function LoanRequest(props) {
             <p>Loan Amount: {ethers.formatUnits(props.loanData.amount, 'ether')} rBTC</p>
             <p>Interest: {props.loanData.interest.toString()} rBTC</p>
             <p>Borrower: {props.loanData.borrower}</p>
-            <p>Funded: {fundedBy ? "true": "false"}</p>
+            <p>Funded: {"true"}</p>
 
-            <div className="fundLoanBtn" onClick={() => props.fundLoan(props.index)}>
-                Fund Loan Request
-            </div>
+            {
+                props.loanData.repaid ?
+                    <div className="fundLoanBtn">
+                        Loan repaid
+                    </div>
+                    :
+                    <div className="awaitingRepaymentBtn">
+                        Awaiting repayment
+                    </div>
+            }
         </div>
     );
 }

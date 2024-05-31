@@ -5,12 +5,14 @@ import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/rea
 import MicroloanABI from '../../contracts/Microloan.json';
 import UserLoan from "../../components/UserLoan";
 import LoanRequest from "../../components/LoanRequest";
+import FundedLoan from "../../components/FundedLoan";
 import "./lendStyle.css";
 
 const ContractAddress = "0x1227af9104f5a233a3ea081d8ca75111bf24f5c5";
 
 export default function Lend() {
     const { walletProvider } = useWeb3ModalProvider();
+    const { address } = useWeb3ModalAccount()
     const [provider, setProvider] = useState(null);
     const [signer, setSigner] = useState(null);
     const [contract, setContract] = useState(null);
@@ -19,6 +21,9 @@ export default function Lend() {
     const [loanAmount, setLoanAmount] = useState("");
     const [interest, setInterest] = useState("");
     const [duration, setDuration] = useState("");
+    const [userLoans, setUserLoans] = useState([]);
+
+    const [loanTab, setLoanTab] = useState("public");
 
     useEffect(() => {
         const init = async () => {
@@ -48,12 +53,18 @@ export default function Lend() {
 
         const loanCounter = await MicroloanContract.loanCounter();
         const loans = [];
+        const userLoansArray = [];
         for (let i = 0; i < loanCounter; i++) {
             const loan = await MicroloanContract.loans(i);
             console.log(loan)
-            loans.push(loan);
+            if (loan.lender === address) {
+                userLoansArray.push(loan);
+            } else {
+                loans.push(loan);
+            }
         }
-        console.log(loans);
+        // console.log(loans);
+        setUserLoans(userLoansArray.reverse());
         setLoanRequests(loans.reverse());
     }
 
@@ -73,16 +84,43 @@ export default function Lend() {
 
 
             <div id="borrowBody">
-        
+
+                <div id="loanTabArea">
+
+                <div id={loanTab === "public" ? "selectedLoanTab": ""} className="loanTab" onClick={() => setLoanTab("public")}>
+                    public
+                </div>
+
+                <div id={loanTab === "userLoans" ? "selectedLoanTab": ""}  className="loanTab" onClick={() => setLoanTab("userLoans")}>
+                    my loans
+                </div>
+
+                </div>
+
                 <div id="loanRequestArea">
-                {loanRequests.map((loan, index) => (
-                    <LoanRequest
-                        key={index}
-                        index={index}
-                        fundLoan={(index) => fundLoan(index)}
-                        loanData={loan}
-                    />
-                ))}
+
+                    {
+                        loanTab === "public" ?
+
+                            loanRequests.map((loan, index) => (
+                                <LoanRequest
+                                    key={index}
+                                    index={index}
+                                    fundLoan={(index) => fundLoan(index)}
+                                    loanData={loan}
+                                />
+                            ))
+                            :
+                            userLoans.map((loan, index) => (
+                                <FundedLoan
+                                    key={index}
+                                    index={index}
+                                    fundLoan={(index) => fundLoan(index)}
+                                    loanData={loan}
+                                />
+                            ))
+
+                    }
                 </div>
             </div>
 
