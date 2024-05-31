@@ -8,7 +8,7 @@ import LoanRequest from "../../components/LoanRequest";
 import FundedLoan from "../../components/FundedLoan";
 import "./lendStyle.css";
 
-const ContractAddress = "0x1227af9104f5a233a3ea081d8ca75111bf24f5c5";
+const ContractAddress = "0xa775c7c4aef36953c3f88ff8d5b290c6e3614ebe";
 
 export default function Lend() {
     const { walletProvider } = useWeb3ModalProvider();

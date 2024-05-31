@@ -6,7 +6,7 @@ import MicroloanABI from '../../contracts/Microloan.json';
 import UserLoan from "../../components/UserLoan";
 import "./borrowStyle.css";
 
-const ContractAddress = "0x1227af9104f5a233a3ea081d8ca75111bf24f5c5";
+const ContractAddress = "0xa775c7c4aef36953c3f88ff8d5b290c6e3614ebe";
 
 export default function Borrow() {
     const { walletProvider } = useWeb3ModalProvider();
@@ -53,16 +53,31 @@ export default function Borrow() {
             loans.push(loan);
         }
         console.log(loans);
-        setLoanRequests(loans.reverse());
+        setLoanRequests(loans);
     }
 
     async function requestLoan() {
-        if(loanAmount && interest && duration) {
+        if (loanAmount && interest && duration) {
             const tx = await contract.requestLoan(ethers.parseUnits(loanAmount, 'ether'), ethers.parseUnits(interest, 'ether'), duration);
             tx.wait();
             setTimeout(() => {
                 fetchLoans();
             }, 100);
+        }
+    }
+
+    async function repayLoan(loanId) {
+        try {
+            let loan = loanRequests[loanId];
+            const repaymentAmount = loan.amount + (loan.interest);
+            console.log(repaymentAmount);
+            const tx = await contract.repayLoan(loanId, { value: repaymentAmount });
+            await tx.wait();
+            setTimeout(() => {
+                fetchLoans(contract);
+            }, 100);
+        } catch (error) {
+            console.error("Error repaying loan:", error);
         }
     }
 
@@ -87,12 +102,14 @@ export default function Borrow() {
                     </div>
                     <div id="requestLoanBtn" onClick={() => requestLoan()}>
                         Request Loan
-                    </div>  
+                    </div>
                 </div>
 
                 {loanRequests.map((loan, index) => (
                     <UserLoan
                         key={index}
+                        index={index}
+                        repayLoan={(index) => repayLoan(index)}
                         loanData={loan}
                     />
                 ))}
